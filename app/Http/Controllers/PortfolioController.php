@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+//use DB;
+use App\Project;
 use Illuminate\Http\Request;
 
 class PortfolioController extends Controller
@@ -13,12 +15,14 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        $portfolio = [
-            ['title' => 'Proyecto #1'],
-            ['title' => 'Proyecto #2'],
-            ['title' => 'Proyecto #3'],
-            ['title' => 'Proyecto #4'],
-        ];
-        return view('portfolio', compact('portfolio'));
+        //it works but...
+        //$portfolio = DB::table('projects')->get();
+        //$portfolio = Project::orderBy('created_at','DESC')->get();
+        $projects = Project::latest('updated_at')->paginate(2);
+        //laravel trae su propio orm Object-relational-mapping mapeo objeto-relacional
+        //convertir Datos de la DB => Clase/Objecto PHP
+        return view('portfolio', [
+            'projects' => Project::latest()->paginate()
+        ]);
     }
 }
