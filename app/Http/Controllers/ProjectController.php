@@ -26,11 +26,10 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function show($id)
-    {
-        //$project = Project::find($id); el siguiente enviara fallo cuando no encuentre el id solicitado
-        $project = Project::findOrFail($id);
+    //Route model binding : inyectar el modelo junto a la variable recibida por la ruta para buscarlo
 
+    public function show(Project $project)
+    {
         return view('projects.show', [
             'project' => $project
         ]);
