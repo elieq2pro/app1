@@ -8,8 +8,8 @@
 <ul>
 
 
-	@forelse ($projects as $projectItem)
-		<li>{{ $projectItem->title }} <br><small>{{ $projectItem->description }}</small><br><small>{{ $projectItem->created_at->diffForHumans() }}</small> </li>
+	@forelse ($projects as $project)
+		<li><a href="{{ route('projects.show', $project) }}">{{ $project->title }}</a> </li>
 	@empty
 		<li>No hay proyectos para mostrar</li>
 	@endforelse
