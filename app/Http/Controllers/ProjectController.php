@@ -34,4 +34,25 @@ class ProjectController extends Controller
             'project' => $project
         ]);
     }
+
+    public function create()
+    {
+        return view('projects.create');
+    }
+
+    public function store()
+    {
+        /*
+        Project::create([
+            'title' => request('title'),
+            'url' => request('url'),
+            'description' => request('description')
+
+        ]);*/
+        //Si los datos que vas a recibir tienen el mismo nombre que los campos en la bd puede usar :
+
+        Project::create(request()->all());
+
+        return redirect()->route('projects.index');
+    }
 }
