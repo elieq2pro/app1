@@ -51,7 +51,13 @@ class ProjectController extends Controller
         ]);*/
         //Si los datos que vas a recibir tienen el mismo nombre que los campos en la bd puede usar :
 
-        Project::create(request()->all());
+        $fields = request()->validate([
+            'title' => 'required',
+            'url' => 'required',
+            'description' => 'required',
+        ]);
+
+        Project::create($fields);
 
         return redirect()->route('projects.index');
     }
