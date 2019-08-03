@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 //use DB;
 use App\Project;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateProjectRequest;
 
 class ProjectController extends Controller
 {
@@ -40,7 +41,7 @@ class ProjectController extends Controller
         return view('projects.create');
     }
 
-    public function store()
+    public function store(CreateProjectRequest $request)
     {
         /*
         Project::create([
@@ -51,13 +52,7 @@ class ProjectController extends Controller
         ]);*/
         //Si los datos que vas a recibir tienen el mismo nombre que los campos en la bd puede usar :
 
-        $fields = request()->validate([
-            'title' => 'required',
-            'url' => 'required',
-            'description' => 'required',
-        ]);
-
-        Project::create($fields);
+        Project::create($request->validated());
 
         return redirect()->route('projects.index');
     }
