@@ -2,12 +2,8 @@
 <html>
 <head>
 	<title>@yield('title','Q2Pro')</title>
-	<style type="text/css">
-		.active a {
-			color: red;
-			text-decoration: none;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="{{ mix('/css/app.css') }}">
+	<script type="text/javascript" src="{{mix('/js/app.js')}}" defer></script>
 </head>
 <body>
 	@include('partials.nav')
