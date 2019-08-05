@@ -3,7 +3,10 @@
 @section('title', 'Contact')
 
 @section('content')
-	<h1>{{ __('Contact') }}</h1>
+	<h1>@lang('Contact')</h1>
+
+	@include('partials.session-status')
+
 	<form method="POST" action="{{ route('messages.store') }}">
 		@csrf
 		<input type="text" name="name" placeholder="Nombre" value="{{ old('name') }}"><br>
@@ -20,4 +23,5 @@
 
 		<button>Enviar</button>
 	</form>
+	@endif
 @endsection
