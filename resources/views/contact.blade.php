@@ -23,5 +23,4 @@
 
 		<button>Enviar</button>
 	</form>
-	@endif
 @endsection
