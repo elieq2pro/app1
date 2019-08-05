@@ -53,3 +53,4 @@ Route::get('saludo/{nombre?}', function($nombre = "Invitado"){
 	return 'Saludos ' . $nombre;
 });
 */
+Auth::routes(['register' => false]);
