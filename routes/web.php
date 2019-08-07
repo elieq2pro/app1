@@ -12,6 +12,12 @@
 | q2pro.net = Route::get('/', function) function es closure
 | q2pro.net/contacto = Route::get('contacto', function)
 */
+//Crear usuario desde las rutas
+// App\User::create([
+// 	'name' => 'Elie',
+// 	'email' => 'elie.qc95@gmail.com',
+// 	'password' => bcrypt('kerrigan')
+// ]);
 
 
 //Route::view('/', 'home', ['nombre1' => 'Eliezer'])->name('home');//Politicas de privacidad, terminos y condiciones
@@ -38,6 +44,7 @@ Route::resource('portafolio', 'ProjectController')
 Route::view('/contacto', 'contact')->name('contact');
 Route::post('contact', 'MessageController@store')->name('messages.store');
 
+Route::resource('usuarios', 'UsersController')->names('users');
 /*
 Route::get('/', function(){
 	$nombre = "Eliezer";
