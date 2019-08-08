@@ -13,12 +13,21 @@
 | q2pro.net/contacto = Route::get('contacto', function)
 */
 //Crear usuario desde las rutas
-// App\User::create([
-// 	'name' => 'Elie',
-// 	'email' => 'elie.qc95@gmail.com',
-// 	'password' => bcrypt('kerrigan')
-// ]);
+/*App\User::create([
+	'name' => 'Josue',
+	'role_id' => '2',
+	'email' => 'elieqc95@gmail.com',
+	'password' => bcrypt('kerrigan')
+]);*/
+/*App\Role::create([
+	'name' => 'stu',
+	'display_name' => 'Estudiante',
+]);*/
 
+//Ruta de prueba
+Route::get('roles', function(){
+	return \App\Role::with('user')->get();
+});
 
 //Route::view('/', 'home', ['nombre1' => 'Eliezer'])->name('home');//Politicas de privacidad, terminos y condiciones
 App::setLocale('es');
