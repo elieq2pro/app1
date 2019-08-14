@@ -23,6 +23,8 @@ class ProjectController extends Controller
     public function index()
     {
         //it works but...
+
+
         //$portfolio = DB::table('projects')->get();
         //$portfolio = Project::orderBy('created_at','DESC')->get();
         //$projects = Project::latest('updated_at')->paginate(2);

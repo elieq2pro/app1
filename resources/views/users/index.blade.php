@@ -8,6 +8,7 @@
 			<th>@lang('name')</th>
 			<th>@lang('email')</th>
 			<th>@lang('role')</th>
+			<th>@lang('action')</th>
 		</tr>
 		@foreach ($users as $user)
 			<tr>
@@ -18,6 +19,13 @@
 					@foreach ($user->roles as $role)
 						{{ $role->display_name}}
 					@endforeach
+				</td>
+				<td>
+					<a class="btn btn-info btn-xs" href="{{ route('users.edit', $user->id) }}">Editar</a><br>
+					<form method="POST" action="{{ route('users.destroy', $user->id) }}">
+						@csrf @method('DELETE')
+						<button class="btn btn-danger btn-xs">Eliminar</button>
+					</form>
 				</td>
 			</tr>
 		@endforeach
