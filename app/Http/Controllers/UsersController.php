@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+// use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateUserRequest;
 
@@ -16,8 +17,8 @@ class UsersController extends Controller
 
     function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('roles:admin',['except' => ['edit']]);
+        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware('roles:admin',['except' => ['edit', 'update', 'show']]);
     }
 
     public function index()
@@ -56,7 +57,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -67,7 +70,9 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
+        // $authUser = Auth::user();
         $user = User::findOrFail($id);
+        $this->authorize('edit', $user);//Solo enviamos un parametro ya que el primero se envia automaticamente que es el del usuario actual
         return view('users.edit', compact('user'));
     }
 
@@ -82,6 +87,8 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
 
+        $this->authorize($user);
+
         $user->update($request->all());
 
         return back()->with('info', 'Usuario actualizado');
@@ -95,6 +102,12 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $this->authorize($user);
+
+        $user->delete();
+
+        return back();
     }
 }
