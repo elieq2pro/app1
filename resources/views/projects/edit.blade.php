@@ -3,12 +3,16 @@
 @section('title', 'Editar proyecto')
 
 @section('content')
-<h1>Editar proyecto</h1>
 @include('partials.validation-errors')
-
-<form method="POST" action="{{ route('projects.update', $project) }}">
-	@csrf @method('PATCH')
-	@include('projects._form', ['btnText' => 'Actualizar'])
-</form>
-
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-sm-10 col-lg-10 mx-auto">
+			<form method="POST" action="{{ route('projects.update', $project) }}" class="bg-white shadow rounded py-3 px-4">
+				@method('PATCH')
+				<h1 class="display-4">Editar proyecto</h1>
+				@include('projects._form', ['btnText' => 'Actualizar'])
+			</form>
+		</div>
+	</div>
+</div>
 @endsection
