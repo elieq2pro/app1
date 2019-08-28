@@ -45,16 +45,7 @@ class User extends Authenticatable
     //Ahora roles es un array y no podemos buscar la propiedad name de un array por lo cual recorremos cada objeto del array
     public function hasRoles(array $roles)
     {
-        foreach ($roles as $role)
-        {
-            foreach ($this->roles as $userRole) {//una ves dentro del objeto del array buscamos su propiedad name
-                if ($userRole->name ===  $role)
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return $this->roles->pluck('name')->intersect($roles)->count();
     }
 
     public function isAdmin()
