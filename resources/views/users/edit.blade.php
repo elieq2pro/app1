@@ -11,9 +11,10 @@
 		{{ session('info') }}
 	</div>
 @endif
+
 <form method="POST" action="{{ route('users.update', $user) }}" enctype="multipart/form-data">
 	@csrf @method('PATCH')
-	<img src="">
+	<img width="100px" src="{{ Storage::url($user->avatar) }}">
 	@include('users._form', ['btnText' => 'Actualizar'])
 </form>
 
