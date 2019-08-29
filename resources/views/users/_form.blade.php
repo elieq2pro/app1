@@ -1,12 +1,15 @@
 @csrf
-<label>
-	Nombre <br>
-	<input type="text" name="name" value="{{ old('name', $user->name) }}">
-</label>
+<p><label for="avatar">
+	<input type="file" name="avatar">
+</label></p>
+<p><label for="nombre">
+	Nombre
+	<input class="form-control" type="text" name="name" value="{{ old('name', $user->name) }}">
+</label></p>
 <br>
-<label>
-	Email <br>
-	<input type="text" name="email" value="{{ old('email', $user->email) }}">
-</label>
+<p><label for="email">
+	Email
+	<input class="form-control" type="text" name="email" value="{{ old('email', $user->email) }}">
+</label></p>
 <br>
-<button>{{ $btnText }}</button>
+<button class="btn btn-success">{{ $btnText }}</button>

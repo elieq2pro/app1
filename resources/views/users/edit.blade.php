@@ -11,8 +11,9 @@
 		{{ session('info') }}
 	</div>
 @endif
-<form method="POST" action="{{ route('users.update', $user) }}">
+<form method="POST" action="{{ route('users.update', $user) }}" enctype="multipart/form-data">
 	@csrf @method('PATCH')
+	<img src="">
 	@include('users._form', ['btnText' => 'Actualizar'])
 </form>
 

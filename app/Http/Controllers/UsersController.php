@@ -85,6 +85,8 @@ class UsersController extends Controller
      */
     public function update(UpdateUserRequest $request, $id)
     {
+        $request->file('avatar')->store('public');
+
         $user = User::findOrFail($id);
 
         $this->authorize($user);
